@@ -1,9 +1,11 @@
 package com.cv.cvlistapplication.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.BulletSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,16 +25,10 @@ import java.util.ArrayList;
 
 public class CvListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int VIEW_TYPE_HEADER = 1000;
-    private static final int VIEW_TYPE_CV_LIST = 1001;
-    private static final int VIEW_TYPE_CV_DIVIDER = 1002;
-
-    private Context context;
     private ArrayList<Cv> cvArrayList;
     private LayoutInflater inflater;
 
     public CvListRecyclerViewAdapter(WeakReference<Context> context, ArrayList<Cv> cvArrayList) {
-        this.context = context.get();
         this.cvArrayList = cvArrayList;
         inflater = (LayoutInflater) context.get().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -40,14 +36,14 @@ public class CvListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.layout_cvlist_child_row, null);
+        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.layout_cvlist_child_row, null);
         return new CvListHeaderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Cv cv = cvArrayList.get(position);
-        // Bind Header info
+        // Bind Header Data
         CvListHeaderViewHolder cvListHeaderViewHolder = (CvListHeaderViewHolder) holder;
         TextView txtName = cvListHeaderViewHolder.getTxtName();
         TextView txtPhone = cvListHeaderViewHolder.getTxtPhone();
@@ -59,19 +55,34 @@ public class CvListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         txtEmail.setText(cv.getEmail());
         txtLinkedIn.setText(cv.getLinkedin());
 
-        // Bind PS
+        // Bind Professional Summary
+        TextView txtPsHeader = cvListHeaderViewHolder.getTxtPsHeader();
         TextView txtPsummary = cvListHeaderViewHolder.getTxtPSummary();
-        txtPsummary.setText(getSpannableString(cv.getProfSummary()), TextView.BufferType.SPANNABLE);
+        String summary = getSpannableString(cv.getProfSummary());
+        txtPsHeader.setVisibility(TextUtils.isEmpty(summary) ? View.GONE : View.VISIBLE);
+        txtPsummary.setText(summary);
+        txtPsummary.setVisibility(TextUtils.isEmpty(summary) ? View.GONE : View.VISIBLE);
 
+        // Bind Technical Skills
+        TextView txtTsHeader = cvListHeaderViewHolder.getTxtTsHeader();
+        TextView txtTechnicalSkills = cvListHeaderViewHolder.getTxtTechnicalSkills();
+        String tSummary = getSpannableString(cv.getTechnicalSkills());
+        txtTsHeader.setVisibility(TextUtils.isEmpty(tSummary) ? View.GONE : View.VISIBLE);
+        txtTechnicalSkills.setText(getSpannableString(cv.getTechnicalSkills()));
+        txtTechnicalSkills.setVisibility(TextUtils.isEmpty(tSummary) ? View.GONE : View.VISIBLE);
 
-        // Bind TS
-
-
-        // Bind CL
+        // Bind Companies List
         renderCompaniesList(cvListHeaderViewHolder.getLayoutWeSummary(), cv.getCompaniesList());
 
     }
 
+    /**
+     * Method to bind companies List.
+     * Iterate through the companies list and add each child to the parent view
+     *
+     * @param parent    Linearlayout
+     * @param companies list of companies
+     */
     private void renderCompaniesList(LinearLayout parent, ArrayList<Company> companies) {
         if (parent == null || companies == null || companies.isEmpty()) return;
         for (Company company : companies) {
@@ -90,9 +101,14 @@ public class CvListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
             parent.addView(child);
         }
-
     }
 
+    /**
+     * Convert arraylist into bullet spannable strting
+     *
+     * @param pSummary professional summary
+     * @return spannable string with bullets
+     */
     private String getSpannableString(ArrayList<String> pSummary) {
         if (pSummary == null || pSummary.isEmpty()) return "";
         SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -122,96 +138,81 @@ public class CvListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         private TextView txtLinkedIn;
 
         // PS
+        private TextView txtPsHeader;
         private TextView txtPSummary;
+
+        // TS
+        private TextView txtTsHeader;
+        private TextView txtTechnicalSkills;
 
         //We
         private LinearLayout layoutWeSummary;
-        private TextView txtPosition;
-        private TextView txtCompanyName;
-        private TextView txtLocation;
-        private TextView txtTenure;
-        private TextView txtWeSummary;
-
 
         CvListHeaderViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 
-        public TextView getTxtName() {
+        TextView getTxtName() {
             if (txtName == null) {
                 txtName = itemView.findViewById(R.id.txtName);
             }
             return txtName;
         }
 
-        public TextView getTxtEmail() {
+        TextView getTxtEmail() {
             if (txtEmail == null) {
                 txtEmail = itemView.findViewById(R.id.txtEmail);
             }
             return txtEmail;
         }
 
-        public TextView getTxtPhone() {
+        TextView getTxtPhone() {
             if (txtPhone == null) {
                 txtPhone = itemView.findViewById(R.id.txtPhone);
             }
             return txtPhone;
         }
 
-        public TextView getTxtLinkedIn() {
+        TextView getTxtLinkedIn() {
             if (txtLinkedIn == null) {
                 txtLinkedIn = itemView.findViewById(R.id.txtLinkedIn);
             }
             return txtLinkedIn;
         }
 
-        public TextView getTxtPSummary() {
+        TextView getTxtPSummary() {
             if (txtPSummary == null) {
                 txtPSummary = itemView.findViewById(R.id.txtPsSummary);
             }
             return txtPSummary;
         }
 
-        public TextView getTxtPosition() {
-            if (txtPosition == null) {
-                txtPosition = itemView.findViewById(R.id.txtPosition);
-            }
-            return txtPosition;
-        }
-
-        public TextView getTxtCompanyName() {
-            if (txtCompanyName == null) {
-                txtCompanyName = itemView.findViewById(R.id.txtCompanyName);
-            }
-            return txtCompanyName;
-        }
-
-        public TextView getTxtLocation() {
-            if (txtLocation == null) {
-                txtLocation = itemView.findViewById(R.id.txtCompanyLocation);
-            }
-            return txtLocation;
-        }
-
-        public TextView getTxtTenure() {
-            if (txtTenure == null) {
-                txtTenure = itemView.findViewById(R.id.txtTenure);
-            }
-            return txtTenure;
-        }
-
-        public TextView getTxtWeSummary() {
-            if (txtWeSummary == null) {
-                txtWeSummary = itemView.findViewById(R.id.txtWeSummary);
-            }
-            return txtWeSummary;
-        }
-
-        public LinearLayout getLayoutWeSummary() {
+        LinearLayout getLayoutWeSummary() {
             if (layoutWeSummary == null) {
                 layoutWeSummary = itemView.findViewById(R.id.layoutWeSummary);
             }
             return layoutWeSummary;
+        }
+
+        TextView getTxtTechnicalSkills() {
+            if (txtTechnicalSkills == null) {
+                txtTechnicalSkills = itemView.findViewById(R.id.txtTechnicalSkills);
+            }
+            return txtTechnicalSkills;
+        }
+
+        TextView getTxtPsHeader() {
+            if (txtPsHeader == null) {
+                txtPsHeader = itemView.findViewById(R.id.txtPsHeader);
+            }
+            return txtPsHeader;
+        }
+
+        TextView getTxtTsHeader() {
+            if (txtTsHeader == null) {
+                txtTsHeader = itemView.findViewById(R.id.txtTsHeader);
+            }
+            return txtTsHeader;
         }
     }
 }

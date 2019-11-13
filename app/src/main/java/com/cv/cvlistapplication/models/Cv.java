@@ -2,11 +2,13 @@ package com.cv.cvlistapplication.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.cv.cvlistapplication.utils.Constants;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Cv implements Parcelable {
 
@@ -31,7 +33,6 @@ public class Cv implements Parcelable {
     @SerializedName(Constants.COMPANIES)
     private ArrayList<Company> companiesList;
 
-
     private Cv(Parcel in) {
         name = in.readString();
         email = in.readString();
@@ -43,6 +44,7 @@ public class Cv implements Parcelable {
             profSummary = new ArrayList<>();
             in.readStringList(profSummary);
         }
+
         boolean areSkillsNull = in.readByte() == (byte) 1;
         if (!areSkillsNull) {
             technicalSkills = new ArrayList<>();

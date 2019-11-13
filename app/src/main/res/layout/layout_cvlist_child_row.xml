@@ -65,6 +65,27 @@
         android:lineSpacingExtra="@dimen/dimen_2"
         android:textColor="@android:color/black" />
 
+
+    <TextView
+        android:id="@+id/txtTsHeader"
+        style="@style/HeadingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_min"
+        android:gravity="center"
+        android:text="@string/technical_skills"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtTechnicalSkills"
+        style="@style/PrimaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_min"
+        android:gravity="start"
+        android:lineSpacingExtra="@dimen/dimen_2"
+        android:textColor="@android:color/black" />
+
     <TextView
         android:id="@+id/txtWeHeader"
         style="@style/HeadingTextView"
@@ -78,6 +99,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_min"
         android:id="@+id/layoutWeSummary"
         android:layout_height="wrap_content" />
 
