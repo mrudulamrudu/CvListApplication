@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="no_connection">No Internet Connection!</string>
+    <string name="professional_summary">Professional Summary</string>
+    <string name="work_experience">Work Experience</string>
 </resources>

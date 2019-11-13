@@ -22,6 +22,9 @@ public class Company implements Parcelable {
     @SerializedName(Constants.TENURE)
     private String tenure;
 
+    @SerializedName(Constants.LOCATION)
+    private String location;
+
     @SerializedName(Constants.RESPONSIBILITIES)
     private ArrayList<String> responsibilities;
 
@@ -43,6 +46,7 @@ public class Company implements Parcelable {
             achievements = new ArrayList<>();
             in.readStringList(achievements);
         }
+        location = in.readString();
     }
 
     public static final Creator<Company> CREATOR = new Creator<Company>() {
@@ -77,6 +81,7 @@ public class Company implements Parcelable {
         if (!isAchieNull) {
             dest.writeStringList(achievements);
         }
+        dest.writeString(location);
     }
 
     public String getCompanyName() {
@@ -101,6 +106,10 @@ public class Company implements Parcelable {
 
     public ArrayList<String> getAchievements() {
         return achievements;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }
 

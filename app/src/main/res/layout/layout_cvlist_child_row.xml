@@ -1,37 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
         android:id="@+id/txtName"
-        style="@style/HeadingTextView"
-        android:textColor="@android:color/black"
-        android:layout_height="wrap_content" />
+        style="@style/PrimaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
 
     <TextView
-        android:layout_width="match_parent"
         android:id="@+id/txtEmail"
+        style="@style/PrimaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_min"
-        style="@style/HeadingTextView"
-        android:textColor="@android:color/black"
-        android:layout_height="wrap_content" />
+        android:gravity="center"
+        android:textColor="@android:color/black" />
 
     <TextView
-        android:layout_width="match_parent"
         android:id="@+id/txtPhone"
-        style="@style/HeadingTextView"
+        style="@style/PrimaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_min"
-        android:textColor="@android:color/black"
-        android:layout_height="wrap_content" />
+        android:gravity="center"
+        android:textColor="@android:color/black" />
 
     <TextView
-        android:layout_width="match_parent"
         android:id="@+id/txtLinkedIn"
+        style="@style/PrimaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_min"
+        android:gravity="center"
+        android:textColor="@android:color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_margin="@dimen/margin_min"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtPsHeader"
         style="@style/HeadingTextView"
-        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_min"
+        android:gravity="center"
+        android:text="@string/professional_summary"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtPsSummary"
+        style="@style/PrimaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_min"
+        android:gravity="start"
+        android:lineSpacingExtra="@dimen/dimen_2"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtWeHeader"
+        style="@style/HeadingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_min"
+        android:gravity="center"
+        android:text="@string/work_experience"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:id="@+id/layoutWeSummary"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

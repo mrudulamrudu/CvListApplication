@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cv.cvlistapplication.adapters.CvListRecyclerViewAdapter;
@@ -32,7 +33,6 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private CvListRecyclerViewAdapter cvListRecyclerViewAdapter;
     private ProgressBar progressBar;
 
     @Override
@@ -63,14 +63,16 @@ public class MainActivity extends AppCompatActivity {
     private void fetchCvsFromGist() {
         if (!checkInternetConnection()) {
             showToast(getString(R.string.no_connection));
+            recyclerView.setVisibility(View.GONE);
             return;
         }
         showProgressDialog();
-        CvApiService cvApiService = CvApiAdapter.getApiService(this);
+        CvApiService cvApiService = CvApiAdapter.getApiService();
         Call<CvListApiResponse> call = cvApiService.getCvList();
         call.enqueue(new Callback<CvListApiResponse>() {
             @Override
-            public void onResponse(@NonNull Call<CvListApiResponse> call, @NonNull Response<CvListApiResponse> response) {
+            public void onResponse(@NonNull Call<CvListApiResponse> call,
+                                   @NonNull Response<CvListApiResponse> response) {
                 hideProgressDialog();
                 if (response.body() != null) {
                     setAdapter(response.body().cvArrayList);
@@ -82,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 hideProgressDialog();
             }
         });
-
     }
 
     private void showProgressDialog() {
@@ -99,8 +100,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void setAdapter(ArrayList<Cv> cvArrayList) {
         if (cvArrayList == null || cvArrayList.isEmpty()) return;
-        cvListRecyclerViewAdapter = new CvListRecyclerViewAdapter(new WeakReference<Context>(this),
+        recyclerView.setVisibility(View.VISIBLE);
+        CvListRecyclerViewAdapter cvListRecyclerViewAdapter = new CvListRecyclerViewAdapter
+                (new WeakReference<Context>(this),
                 cvArrayList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(cvListRecyclerViewAdapter);
     }
 
     @Override
@@ -116,12 +121,10 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

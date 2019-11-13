@@ -19,4 +19,5 @@ public class Constants {
     public static final String ACHIEVEMENTS = "achievements";
 
     public static final String CV_LIST = "cv_list";
+    public static final String LOCATION = "location";
 }

@@ -3,9 +3,6 @@ package com.cv.cvlistapplication.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.text.TextUtils;
-import android.view.Gravity;
-import android.widget.Toast;
 
 public class DataUtils {
 
@@ -14,7 +11,8 @@ public class DataUtils {
     }
 
     public static int getConnectionStatus(Context context) {
-        final ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager conMgr = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = conMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isAvailable()) {
             if (networkInfo.isConnected()) {
