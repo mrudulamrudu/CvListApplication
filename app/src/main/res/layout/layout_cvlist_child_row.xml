@@ -1,106 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/txtName"
-        style="@style/PrimaryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/txtEmail"
-        style="@style/PrimaryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="center"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/txtPhone"
-        style="@style/PrimaryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="center"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/txtLinkedIn"
-        style="@style/PrimaryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="center"
-        android:textColor="@android:color/black" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_1"
-        android:layout_margin="@dimen/margin_min"
-        android:background="@android:color/black" />
-
-    <TextView
-        android:id="@+id/txtPsHeader"
-        style="@style/HeadingTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="center"
-        android:text="@string/professional_summary"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/txtPsSummary"
-        style="@style/PrimaryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="start"
-        android:lineSpacingExtra="@dimen/dimen_2"
-        android:textColor="@android:color/black" />
-
-
-    <TextView
-        android:id="@+id/txtTsHeader"
-        style="@style/HeadingTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="center"
-        android:text="@string/technical_skills"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/txtTechnicalSkills"
-        style="@style/PrimaryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="start"
-        android:lineSpacingExtra="@dimen/dimen_2"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/txtWeHeader"
-        style="@style/HeadingTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_min"
-        android:gravity="center"
-        android:text="@string/work_experience"
-        android:textColor="@android:color/black" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/margin_min"
+    app:cardUseCompatPadding="true"
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin_min"
-        android:id="@+id/layoutWeSummary"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtName"
+            style="@style/PrimaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtEmail"
+            style="@style/PrimaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtPhone"
+            style="@style/PrimaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtLinkedIn"
+            style="@style/PrimaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1"
+            android:layout_margin="@dimen/margin_min"
+            android:background="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtPsHeader"
+            style="@style/HeadingTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="center"
+            android:text="@string/professional_summary"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtPsSummary"
+            style="@style/PrimaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="start"
+            android:lineSpacingExtra="@dimen/dimen_2"
+            android:textColor="@android:color/black" />
+
+
+        <TextView
+            android:id="@+id/txtTsHeader"
+            style="@style/HeadingTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="center"
+            android:text="@string/technical_skills"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtTechnicalSkills"
+            style="@style/PrimaryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="start"
+            android:lineSpacingExtra="@dimen/dimen_2"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/txtWeHeader"
+            style="@style/HeadingTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:gravity="center"
+            android:text="@string/work_experience"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:id="@+id/layoutWeSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_min"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

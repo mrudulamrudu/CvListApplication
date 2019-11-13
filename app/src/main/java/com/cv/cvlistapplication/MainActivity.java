@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -102,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
         CvListRecyclerViewAdapter cvListRecyclerViewAdapter = new CvListRecyclerViewAdapter
                 (new WeakReference<Context>(this),
                         cvArrayList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(cvListRecyclerViewAdapter);
     }
 }
