@@ -33,6 +33,17 @@ public class Cv implements Parcelable {
     @SerializedName(Constants.COMPANIES)
     private ArrayList<Company> companiesList;
 
+    public Cv(String name, String email, String phone , String linkedIn, ArrayList<String> profSummary,
+              ArrayList<String> techSkills, ArrayList<Company> companies){
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.linkedin = linkedIn;
+        this.profSummary = profSummary;
+        this.technicalSkills = techSkills;
+        this.companiesList = companies;
+    }
+
     private Cv(Parcel in) {
         name = in.readString();
         email = in.readString();

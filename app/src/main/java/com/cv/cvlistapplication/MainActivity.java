@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+    /**
+     *
+     * Fetch Cvs from gist using Retrofit
+     *
+     */
     private void fetchCvsFromGist() {
         if (!checkInternetConnection()) {
             showToast(getString(R.string.no_connection));
@@ -97,14 +101,18 @@ public class MainActivity extends AppCompatActivity {
         return DataUtils.isInternetAvailable(getApplicationContext());
     }
 
+    /**
+     * Method to build the adapter and set it to the recyclerview
+     * @param cvArrayList Cv list
+     */
     private void setAdapter(ArrayList<Cv> cvArrayList) {
         if (cvArrayList == null || cvArrayList.isEmpty()) return;
         recyclerView.setVisibility(View.VISIBLE);
+        // Pass Weak ref to avoid mem leaks
         CvListRecyclerViewAdapter cvListRecyclerViewAdapter = new CvListRecyclerViewAdapter
                 (new WeakReference<Context>(this),
                         cvArrayList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(cvListRecyclerViewAdapter);
     }
 }

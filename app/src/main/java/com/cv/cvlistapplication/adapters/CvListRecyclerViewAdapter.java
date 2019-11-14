@@ -36,7 +36,7 @@ public class CvListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.layout_cvlist_child_row, null);
+        View view = inflater.inflate(R.layout.layout_cvlist_child_row, null);
         return new CvListHeaderViewHolder(view);
     }
 
@@ -74,6 +74,10 @@ public class CvListRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         // Bind Companies List
         renderCompaniesList(cvListHeaderViewHolder.getLayoutWeSummary(), cv.getCompaniesList());
 
+    }
+
+    public void setCvArrayList(ArrayList<Cv> cvArrayList){
+        this.cvArrayList = cvArrayList;
     }
 
     /**

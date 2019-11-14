@@ -13,6 +13,7 @@ public class DataUtils {
     public static int getConnectionStatus(Context context) {
         final ConnectivityManager conMgr = (ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (conMgr == null) return NetworkStatusCodes.NET_DISCONNECTED;
         NetworkInfo networkInfo = conMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isAvailable()) {
             if (networkInfo.isConnected()) {

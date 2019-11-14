@@ -31,6 +31,17 @@ public class Company implements Parcelable {
     @SerializedName(Constants.ACHIEVEMENTS)
     private ArrayList<String> achievements;
 
+    public Company(String companyName, String companyLogo , String role, String tenure, String location,
+                   ArrayList<String> responsibilities, ArrayList<String> achievements){
+        this.companyName = companyName;
+        this.companyLogo = companyLogo;
+        this.role = role;
+        this.tenure = tenure;
+        this.location = location;
+        this.responsibilities = responsibilities;
+        this.achievements = achievements;
+    }
+
     private Company(Parcel in) {
         companyName = in.readString();
         companyLogo = in.readString();
