@@ -3,6 +3,8 @@ package com.cv.cvlistapplication.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import com.cv.cvlistapplication.utils.Constants;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,29 +12,34 @@ import java.util.ArrayList;
 
 public class Company implements Parcelable {
 
+    public static final Creator<Company> CREATOR = new Creator<Company>() {
+        @Override
+        public Company createFromParcel(Parcel in) {
+            return new Company(in);
+        }
+
+        @Override
+        public Company[] newArray(int size) {
+            return new Company[size];
+        }
+    };
     @SerializedName(Constants.COMP_NAME)
     private String companyName;
-
     @SerializedName(Constants.COMP_LOGO)
     private String companyLogo;
-
     @SerializedName(Constants.ROLE)
     private String role;
-
     @SerializedName(Constants.TENURE)
     private String tenure;
-
     @SerializedName(Constants.LOCATION)
     private String location;
-
     @SerializedName(Constants.RESPONSIBILITIES)
     private ArrayList<String> responsibilities;
-
     @SerializedName(Constants.ACHIEVEMENTS)
     private ArrayList<String> achievements;
 
-    public Company(String companyName, String companyLogo , String role, String tenure, String location,
-                   ArrayList<String> responsibilities, ArrayList<String> achievements){
+    public Company(String companyName, String companyLogo, String role, String tenure, String location,
+                   ArrayList<String> responsibilities, ArrayList<String> achievements) {
         this.companyName = companyName;
         this.companyLogo = companyLogo;
         this.role = role;
@@ -59,18 +66,6 @@ public class Company implements Parcelable {
         }
         location = in.readString();
     }
-
-    public static final Creator<Company> CREATOR = new Creator<Company>() {
-        @Override
-        public Company createFromParcel(Parcel in) {
-            return new Company(in);
-        }
-
-        @Override
-        public Company[] newArray(int size) {
-            return new Company[size];
-        }
-    };
 
     @Override
     public int describeContents() {
@@ -121,6 +116,23 @@ public class Company implements Parcelable {
 
     public String getLocation() {
         return location;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Company company = (Company) obj;
+        return (company.getCompanyName().equals(getCompanyName()) && company.getCompanyLogo().equals(getCompanyLogo()) &&
+                company.getRole().equals(getRole()) && company.getTenure().
+                equals(getTenure()) && company.getLocation().equals(getLocation()) && company.getAchievements().equals(getAchievements())
+                && company.getResponsibilities().equals(getResponsibilities()));
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
 
