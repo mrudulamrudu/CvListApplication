@@ -15,5 +15,5 @@ In this project a piublic gist located at https://gist.github.com/mrudulamrudu/8
 
  Retrofit is used as a networking library to fetch the data from gist and load it into model class
 
- Simple unit test cases are done on core logic classes using Roboelectric and mockito.
+ Simple unit test cases are done on model classes using Junit4.
 
